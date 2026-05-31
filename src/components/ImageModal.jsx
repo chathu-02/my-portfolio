@@ -1,4 +1,5 @@
 import React from 'react';
+import { getImageUrl } from '../utils/imageMap'
 
 export default function ImageModal({ images = [], start = 0, onClose }) {
   const [index, setIndex] = React.useState(start);
@@ -6,18 +7,8 @@ export default function ImageModal({ images = [], start = 0, onClose }) {
   if (!images || images.length === 0) return null;
 
   const src = (name) => {
-    if (!name) return '';
-    // If path starts with components/, load relative to /src/<path> (e.g. components/stat/...)
-    // Otherwise assume images are in /src/assets/<name> so folders like Jewellary/ map correctly.
-    let path = `/src/assets/${name}`;
-    if (name.startsWith('components/')) {
-      path = `/src/${name}`;
-    }
-    try {
-      return new URL(encodeURI(path), import.meta.url).href;
-    } catch (e) {
-      return encodeURI(path);
-    }
+    if (!name) return ''
+    return getImageUrl(name)
   };
 
   return (

@@ -1,5 +1,6 @@
 import React from 'react'
 import ImageModal from './ImageModal'
+import { getImageUrl } from '../utils/imageMap'
 
 export default function ProjectCard({
   title,
@@ -15,17 +16,8 @@ export default function ProjectCard({
 
   const src = (name) => {
     if (!name) return ''
-    // If the path references components (e.g. "components/stat/.."), load from /src/<path>.
-    // Otherwise assume images live in /src/assets/<name> (covers "Jewellary/...", "personal tasker/...", etc.).
-    let path = `/src/assets/${name}`
-    if (name.startsWith('components/')) {
-      path = `/src/${name}`
-    }
-    try {
-      return new URL(encodeURI(path), import.meta.url).href
-    } catch (e) {
-      return encodeURI(path)
-    }
+    const url = getImageUrl(name)
+    return url
   }
 
   const handleOpen = (i = 0) => {
