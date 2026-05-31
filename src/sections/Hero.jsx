@@ -35,13 +35,13 @@ const Hero = () => {
       {/* Background Glow */}
       <div className="absolute inset-0 overflow-hidden -z-10">
         <motion.div
-          className="absolute left-[-10%] top-[-10%] w-[500px] h-[500px] rounded-full bg-blue-600/20 blur-[120px]"
+          className="absolute left-[-20%] top-[-20%] w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] rounded-full bg-blue-600/20 blur-[120px]"
           animate={{ x: [0, 30, 0], y: [0, -50, 0] }}
           transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
         />
 
         <motion.div
-          className="absolute right-[-5%] bottom-[-10%] w-[600px] h-[600px] rounded-full bg-purple-600/15 blur-[120px]"
+          className="absolute right-[-10%] bottom-[-20%] w-[400px] h-[400px] sm:w-[600px] sm:h-[600px] rounded-full bg-purple-600/15 blur-[120px]"
           animate={{ x: [0, -40, 0], y: [0, 40, 0] }}
           transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
         />
@@ -111,16 +111,13 @@ const Hero = () => {
         </div>
 
         {/* RIGHT IMAGE */}
-        <motion.div
-          variants={item}
-          className="flex justify-center lg:justify-end transform lg:translate-x-[400px]"
-        >
+        <motion.div variants={item} className="hidden md:flex justify-center lg:justify-end transform lg:translate-x-[400px]">
           <div className="relative overflow-hidden">
-            {/* Profile Image (no frame) */}
+            {/* Profile Image (hidden on small screens to avoid layout overlap) */}
             <img
               src={heroImage}
               alt="Chathumi Hewamaramage"
-              className="relative w-80 h-80 md:w-[420px] md:h-[420px] object-cover rounded-full"
+              className="relative w-48 h-48 md:w-[420px] md:h-[420px] object-cover rounded-full"
             />
           </div>
         </motion.div>
