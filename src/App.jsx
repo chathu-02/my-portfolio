@@ -1,4 +1,5 @@
 import Header from './components/Header'
+import Navbar from './components/Navbar'
 import Footer from './components/Footer.jsx'
 import Hero from './sections/Hero'
 import About from './sections/About.jsx'
@@ -9,6 +10,7 @@ import Contact from './sections/Contact.jsx'
 function App() {
   return (
     <div className="min-h-screen font-sans bg-gray-950 text-gray-100 pt-16">
+      <Navbar />
       <Header />
       <Hero />
       <main>
