@@ -1,61 +1,126 @@
-import { FaEnvelope, FaLinkedin, FaGithub, FaPhoneAlt } from 'react-icons/fa';
-import { motion } from 'framer-motion'
+import React from 'react';
+import { FaEnvelope, FaLinkedin, FaGithub } from 'react-icons/fa';
+import { motion } from 'framer-motion';
+
+const contacts = [
+  {
+    icon: <FaEnvelope size={18} />,
+    label: "Email Me",
+    sub: "chathuhewamaramage@gmail.com",
+    href: "mailto:chathuhewamaramage@gmail.com",
+    mono: "email",
+    external: false,
+  },
+  {
+    icon: <FaLinkedin size={18} />,
+    label: "LinkedIn",
+    sub: "chathumi-hewamaramage",
+    href: "https://www.linkedin.com/in/chathumi-hewamaramage-a65719267/",
+    mono: "linkedin",
+    external: true,
+  },
+  {
+    icon: <FaGithub size={18} />,
+    label: "GitHub",
+    sub: "github.com/chathu-02",
+    href: "https://github.com/chathu-02",
+    mono: "github",
+    external: true,
+  },
+];
 
 export default function Contact() {
-  const container = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: { staggerChildren: 0.15 } } }
-  const item = { hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0, transition: { duration: 0.6 } } }
-
   return (
-    <section id="contact" className="section scroll-mt-24 bg-black text-white py-20 px-6">
-      <motion.div variants={container} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.25 }} className="container mx-auto max-w-4xl text-center">
-        {/* Title & Lead */}
-        <motion.h2 variants={item} className="text-3xl md:text-3xl font-bold mb-4">GET IN TOUCH</motion.h2>
-        <motion.p variants={item} className="text-lg text-gray-400 mb-12">Let’s talk.</motion.p>
+    <section id="contact" className="relative scroll-mt-24 bg-[#030712] text-white py-24 px-6 overflow-hidden">
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          {/* Direct Contact details with Icons */}
-          <motion.div variants={item} className="space-y-6 text-left">
-          </motion.div>
+      {/* Subtle glow — matches other sections */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-10 left-1/3 w-80 h-80 bg-cyan-500/4 rounded-full blur-[120px]" />
+        <div className="absolute bottom-10 right-1/3 w-80 h-80 bg-blue-500/4 rounded-full blur-[120px]" />
+      </div>
 
-          {/* Buttons with Icons */}
-          <motion.div variants={item} className="flex flex-col space-y-4">
-            <a 
-              className="btn flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded transition" 
-              href="mailto:chathuhewamaramage@gmail.com"
+      <div className="max-w-3xl mx-auto relative z-10">
+
+        {/* Section Label — matches About/Projects */}
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="flex items-center gap-4 mb-6"
+        >
+         
+          <h2 className="text-2xl md:text-3xl font-bold text-white">Get In Touch</h2>
+          <div className="flex-1 h-px bg-linear-to-r from-white/10 to-transparent ml-4" />
+        </motion.div>
+
+        {/* Subtitle */}
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="text-gray-500 text-sm font-mono mb-14"
+        >
+         Open to opportunities & collaborations
+        </motion.p>
+
+       
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={{
+            hidden: { opacity: 0 },
+            show: { opacity: 1, transition: { staggerChildren: 0.12 } }
+          }}
+          className="flex flex-col gap-3"
+        >
+          {contacts.map((contact, index) => (
+            <motion.a
+              key={index}
+              href={contact.href}
+              target={contact.external ? "_blank" : undefined}
+              rel={contact.external ? "noreferrer" : undefined}
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                show: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+              }}
+              whileHover={{ x: 6 }}
+              transition={{ duration: 0.2 }}
+              className="group flex items-center gap-5 px-5 py-4 rounded-xl border border-white/5 hover:border-cyan-400/20 bg-white/2 hover:bg-white/4 transition-all duration-300"
             >
-              <motion.span whileHover={{ scale: 1.2, rotate: 5 }} transition={{ type: 'spring', stiffness: 400 }}>
-                <FaEnvelope />
-              </motion.span>
-              Email Me
-            </a>
-            
-            <a
-              className="btn btn--ghost flex items-center justify-center gap-2 border border-white hover:bg-white hover:text-black py-3 px-6 rounded transition"
-              href="https://www.linkedin.com/in/chathumi-hewamaramage-a65719267/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <motion.span whileHover={{ scale: 1.2, rotate: 5 }} transition={{ type: 'spring', stiffness: 400 }}>
-                <FaLinkedin size={20} />
-              </motion.span>
-              LinkedIn
-            </a>
+              
 
-            <a
-              className="btn btn--ghost flex items-center justify-center gap-2 border border-gray-600 text-gray-400 hover:border-white hover:text-white py-3 px-6 rounded transition"
-              href="https://github.com/chathu-02"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <motion.span whileHover={{ scale: 1.2, rotate: 5 }} transition={{ type: 'spring', stiffness: 400 }}>
-                <FaGithub size={20} />
-              </motion.span>
-              GitHub
-            </a>
-          </motion.div>
+              {/* Icon */}
+              <span className="text-gray-500 group-hover:text-cyan-400 transition-colors duration-300">
+                {contact.icon}
+              </span>
 
-        </div>
-      </motion.div>
+              {/* Text */}
+              <div className="flex-1">
+                <span className="text-gray-300 group-hover:text-white text-sm font-medium transition-colors duration-300">
+                  {contact.label}
+                </span>
+                <span className="text-gray-600 text-xs ml-3 font-mono group-hover:text-gray-400 transition-colors duration-300">
+                  {contact.sub}
+                </span>
+              </div>
+
+              {/* Arrow — subtle */}
+              <span className="text-white/10 group-hover:text-cyan-400 text-sm transition-all duration-300 group-hover:translate-x-1 inline-block">
+                ↗
+              </span>
+            </motion.a>
+          ))}
+        </motion.div>
+
+        {/* Divider */}
+        <div className="mt-16 h-px bg-linear-to-r from-transparent via-white/10 to-transparent" />
+
+       
+
+      </div>
     </section>
   );
 }

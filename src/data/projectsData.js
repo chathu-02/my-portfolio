@@ -1,5 +1,22 @@
 export const projectsData = [
   {
+    id: 4,
+    title: "AURAGEM CUSTOM",
+    description: "A full-stack e-commerce system featuring product management (CRUD), shopping cart functionality, and an admin dashboard to manage orders and customer data",
+    tech: ["React.js", "Node.js", "Express.js", "MongoDB", "Tailwind CSS"],
+    github: "https://github.com/chathu-02/e-commerce-website",
+    live: "https://aura-gem-store-final.onrender.com/",
+    images: [
+      "/Jewellary/j1.png",
+      "/Jewellary/j2.png",
+      "/Jewellary/j3.png",
+      "/Jewellary/j4.png",
+      "/Jewellary/j5.png",
+      "/Jewellary/j6.png",
+    ],
+    category: "E-commerce"
+  },
+  {
     id: 1,
     title: "Startup Connector Platform",
     description: "Developed a platform connecting startups with students for gig-based collaboration, featuring gig posting, student application workflows, and real-time chat functionality with real time chat system",
@@ -50,31 +67,8 @@ export const projectsData = [
     images: ["/s1.jpg", "/s2.jpg", "/s3.jpg"],
     category: "AI / Full Stack"
   },
-  {
-    id: 4,
-    title: "AURAGEM CUSTOM",
-    description: "A full-stack e-commerce system featuring product management (CRUD), shopping cart functionality, and an admin dashboard to manage orders and customer data",
-    tech: ["React.js", "Node.js", "Express.js", "MongoDB", "Tailwind CSS"],
-    github: "https://github.com/chathu-02/e-commerce-website",
-    live: "https://aura-gem-store-final.onrender.com/",
-    images: [
-      "/Jewellary/j1.png",
-      "/Jewellary/j2.png",
-      "/Jewellary/j3.png",
-      "/Jewellary/j4.png",
-      "/Jewellary/j5.png",
-      "/Jewellary/j6.png",
-    ],
-    category: "E-commerce"
-  },
-  {
-    id: 5,
-    title: "Salon Laaro",
-    description: "A MERN stack web application built to automate salon booking and service management with secure user authentication and real-time feature.",
-    tech: ["MERN Stack", "RESTful APIs", "Authentication"],
-    github: "https://github.com/chathu-02/Salon-Management-System",
-    category: "Web App"
-  },
+  
+  
   {
     id: 6,
     title: "Personal Task Manager",
