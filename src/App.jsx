@@ -9,7 +9,7 @@ import Contact from './sections/Contact.jsx'
 
 function App() {
   return (
-    <div className="min-h-screen font-sans bg-gray-950 text-gray-100 pt-16">
+    <div className="min-h-screen font-sans bg-gray-950 text-gray-100 pt-6">
       <Navbar />
       <Header />
       <Hero />

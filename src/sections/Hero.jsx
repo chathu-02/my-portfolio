@@ -63,7 +63,7 @@ const Hero = () => {
             transition={{ duration: 0.8 }}
             className="mt-8 inline-block px-4 py-2 text-sm md:text-base font-bold tracking-[0.15em] text-cyan-400 uppercase bg-cyan-400/10 border border-cyan-400/30 rounded-full"
           >
-            Full Stack Developer | QA Enthusiast
+            Full Stack Developer | QA Automation
           </motion.span>
 
           <motion.div variants={item} className="space-y-2 mb-3">
@@ -101,17 +101,22 @@ const Hero = () => {
           >
             <div className="text-center md:text-left">
               <p className="text-2xl font-bold text-cyan-300">{stats.projects}+</p>
-              <p className="text-xs text-cyan-100/70 font-mono">Projects</p>
+              <p className="text-sm md:text-base text-gray-300 font-mono">Projects</p>
             </div>
             <div className="w-px bg-white/10" />
             <div className="text-center md:text-left">
               <p className="text-2xl font-bold text-blue-300">2+</p>
-              <p className="text-xs text-blue-100/70 font-mono">Years Learning</p>
+              <p
+                className="text-sm md:text-base text-gray-300 font-mono tracking-tighter"
+                style={{ wordSpacing: '-0.16em' }}
+              >
+                Dev Experience
+              </p>
             </div>
             <div className="w-px bg-white/10" />
             <div className="text-center md:text-left">
               <p className="text-2xl font-bold text-sky-300">10+</p>
-              <p className="text-xs text-sky-100/70 font-mono">Technologies</p>
+              <p className="text-sm md:text-base text-gray-300 font-mono">Technologies</p>
             </div>
           </motion.div>
 
