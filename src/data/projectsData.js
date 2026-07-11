@@ -72,7 +72,7 @@ export const projectsData = [
   {
     id: 6,
     title: "Personal Task Manager",
-    description: "An Android application designed for managing personal tasks and overall wellness.",
+    description: "An Android application designed for managing personal tasks and overall wellness.Track daily water intake and monitor hydration progress,Receive smart reminders to stay hydrated throughout the day, Record and monitor daily moods using a simple mood tracker,Share mood updates through social media platforms, Maintain a daily wellness routine with personalized habit tracking.",
     tech: ["Kotlin / Java", "Android Studio"],
     github: "https://github.com/chathu-02/Personal-WellnessApp",
     images: [

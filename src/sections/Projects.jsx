@@ -24,6 +24,26 @@ function ProjectRow({ project, index, onOpen }) {
     >
       <div className="relative w-full sm:w-125 md:w-150 group">
 
+        {project.id === 4 ? (
+          <div className="mb-2 flex justify-start">
+            <span className="inline-flex rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-cyan-200">
+              Custom Client Project ⭐⭐⭐
+            </span>
+          </div>
+        ) : project.id === 1 || project.id === 2 ? (
+          <div className="mb-2 flex justify-start">
+            <span className="inline-flex rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-cyan-200">
+              University Group Project ⭐⭐
+            </span>
+          </div>
+        ) : project.id === 3 || project.id === 6 ? (
+          <div className="mb-2 flex justify-start">
+            <span className="inline-flex rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-cyan-200">
+              Personal Project
+            </span>
+          </div>
+        ) : null}
+
 
         {/* Hover left accent line */}
         <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-cyan-400/0 group-hover:bg-cyan-400/40 transition-all duration-500 rounded-full" />

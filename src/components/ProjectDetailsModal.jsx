@@ -4,6 +4,25 @@ import { getImageUrl } from '../utils/imageMap'
 
 export default function ProjectDetailsModal({ project, onClose }) {
   const [index, setIndex] = React.useState(0)
+  const isAuraGem = project.id === 4
+
+  const auraGemHighlights = [
+    'Secure sign-up and customer authentication',
+    'Ready-made product shopping and custom jewelry requests',
+    'Reference image upload for personalized designs',
+    'Automatic invoice generation after order confirmation',
+    'Bank transfer payment flow based on invoice details',
+    'Intelligent craftsman assignment and earnings tracking',
+  ]
+
+  const auraGemWorkflow = [
+    'Customer signs in and selects a product or custom request.',
+    'The platform creates an invoice after checkout.',
+    'Customer completes payment through bank transfer.',
+    'The order is assigned to an available craftsman.',
+    'Craftsman completes the work and updates status.',
+    'Admin monitors orders, revenue, and exports PDF reports.',
+  ]
 
   React.useEffect(() => {
     if (!project) return undefined
@@ -53,21 +72,21 @@ export default function ProjectDetailsModal({ project, onClose }) {
         initial={{ opacity: 0, y: 24, scale: 0.98 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 0.25, ease: 'easeOut' }}
-        className="relative flex h-full w-full max-w-7xl flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#07111f] shadow-[0_30px_120px_rgba(0,0,0,0.55)] sm:h-auto sm:max-h-[calc(100vh-2rem)] sm:rounded-3xl"
+        className={`relative flex h-full w-full overflow-hidden rounded-2xl border border-white/10 bg-[#07111f] shadow-[0_30px_120px_rgba(0,0,0,0.55)] sm:h-auto sm:max-h-[calc(100vh-2rem)] sm:rounded-3xl ${isAuraGem ? 'max-w-6xl flex-col' : 'max-w-7xl flex-col'}`}
         onClick={(event) => event.stopPropagation()}
         role="dialog"
         aria-modal="true"
         aria-labelledby="project-details-title"
       >
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,211,238,0.16),transparent_38%),radial-gradient(circle_at_bottom_left,rgba(59,130,246,0.12),transparent_35%)]" />
-        <div className="relative flex-1 min-h-0 overflow-y-auto lg:grid lg:grid-cols-[0.9fr_1.1fr] lg:overflow-hidden">
-          <div className="relative border-b border-white/10 bg-black/20 lg:border-b-0 lg:border-r">
+        <div className={`relative flex-1 min-h-0 overflow-y-auto ${isAuraGem ? 'lg:overflow-y-auto' : 'lg:grid lg:grid-cols-[0.95fr_1.05fr] lg:overflow-hidden'}`}>
+          <div className={`relative border-b border-white/10 bg-black/20 ${isAuraGem ? 'lg:border-b border-white/10' : 'lg:border-b-0 lg:border-r'}`}>
             {hasImages ? (
-              <div className="relative flex min-h-64 items-center justify-center bg-[#050b16] p-4 sm:min-h-80 lg:min-h-full lg:h-full lg:p-5">
+              <div className={`relative flex min-h-64 items-center justify-center bg-[#050b16] p-4 sm:min-h-80 ${isAuraGem ? 'lg:min-h-112 lg:p-6' : 'lg:min-h-full lg:h-full lg:p-5'}`}>
                 <img
                   src={currentImage}
                   alt={`${project.title} preview ${index + 1}`}
-                  className="max-h-[34vh] w-full rounded-2xl border border-white/10 object-contain shadow-[0_18px_50px_rgba(0,0,0,0.35)] sm:max-h-[42vh] lg:max-h-[56vh]"
+                  className={`max-h-[34vh] w-full rounded-2xl border border-white/10 object-contain shadow-[0_18px_50px_rgba(0,0,0,0.35)] sm:max-h-[42vh] ${isAuraGem ? 'lg:max-h-96' : 'lg:max-h-[56vh]'}`}
                 />
 
                 {images.length > 1 ? (
@@ -108,7 +127,7 @@ export default function ProjectDetailsModal({ project, onClose }) {
             )}
           </div>
 
-          <div className="relative flex min-h-0 flex-col gap-4 p-5 sm:p-6 lg:overflow-y-auto lg:p-6 xl:p-7">
+          <div className={`relative flex min-h-0 flex-col gap-4 p-5 sm:p-6 ${isAuraGem ? 'lg:p-6 xl:p-8' : 'lg:overflow-y-auto lg:p-6 xl:p-7'}`}>
             <div className="flex items-start justify-between gap-3">
               <div>
                 {project.category ? (
@@ -135,6 +154,51 @@ export default function ProjectDetailsModal({ project, onClose }) {
               {project.description}
             </p>
 
+            {isAuraGem ? (
+              <div className="rounded-2xl border border-cyan-400/15 bg-cyan-400/5 p-4 sm:p-5">
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                  <div>
+                    <p className="text-[0.68rem] uppercase tracking-[0.2em] text-cyan-200/80 sm:text-xs">
+                      Key Features
+                    </p>
+                    <h3 className="mt-1 text-lg font-semibold text-white sm:text-xl">
+                      Aura Gem – Custom Jewelry E-Commerce Platform
+                    </h3>
+                  </div>
+                  <div className="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-cyan-100">
+                    Client Project
+                  </div>
+                </div>
+
+                <div className="mt-4 grid gap-3 sm:grid-cols-3">
+                  <div className="rounded-xl border border-white/10 bg-black/10 p-3">
+                    <p className="text-[0.65rem] uppercase tracking-[0.2em] text-slate-400">Role</p>
+                    <p className="mt-1 text-sm font-semibold text-white">Full-Stack Developer</p>
+                  </div>
+                  <div className="rounded-xl border border-white/10 bg-black/10 p-3">
+                    <p className="text-[0.65rem] uppercase tracking-[0.2em] text-slate-400">Focus</p>
+                    <p className="mt-1 text-sm font-semibold text-white">Custom Orders</p>
+                  </div>
+                  <div className="rounded-xl border border-white/10 bg-black/10 p-3">
+                    <p className="text-[0.65rem] uppercase tracking-[0.2em] text-slate-400">Reports</p>
+                    <p className="mt-1 text-sm font-semibold text-white">Revenue PDF Export</p>
+                  </div>
+                </div>
+
+                <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                  {auraGemHighlights.map((item) => (
+                    <div
+                      key={item}
+                      className="flex items-start gap-3 rounded-2xl border border-white/5 bg-black/10 px-4 py-3"
+                    >
+                      <span className="mt-1.5 h-2 w-2 flex-none rounded-full bg-cyan-300" />
+                      <span className="text-sm leading-6 text-slate-300 sm:text-[0.98rem]">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : null}
+
             {project.tech?.length ? (
               <div>
                 <p className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-400 sm:text-sm">
@@ -150,6 +214,29 @@ export default function ProjectDetailsModal({ project, onClose }) {
                     </li>
                   ))}
                 </ul>
+              </div>
+            ) : null}
+
+            {isAuraGem ? (
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-4 sm:p-5 lg:p-6">
+                <p className="text-[0.68rem] uppercase tracking-[0.2em] text-slate-400 sm:text-xs">
+                  Working Flow
+                </p>
+                <ol className="mt-4 grid gap-3">
+                  {auraGemWorkflow.map((step, stepIndex) => (
+                    <li
+                      key={step}
+                      className="flex w-full items-start gap-3 rounded-2xl border border-white/5 bg-black/10 px-4 py-4"
+                    >
+                      <span className="flex h-8 w-8 flex-none items-center justify-center rounded-full bg-cyan-400/15 text-sm font-semibold text-cyan-200">
+                        {stepIndex + 1}
+                      </span>
+                      <span className="text-sm leading-6 text-slate-300 sm:text-[0.98rem]">
+                        {step}
+                      </span>
+                    </li>
+                  ))}
+                </ol>
               </div>
             ) : null}
 
