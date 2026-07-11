@@ -1,5 +1,4 @@
 import React from 'react'
-import ImageModal from './ImageModal'
 import { getImageUrl } from '../utils/imageMap'
 
 export default function ProjectCard({
@@ -10,25 +9,26 @@ export default function ProjectCard({
   github,
   live,
   images = [],
+  onClick,
 }) {
-  const [open, setOpen] = React.useState(false)
-  const [startIndex, setStartIndex] = React.useState(0)
-
   const src = (name) => {
     if (!name) return ''
     const url = getImageUrl(name)
     return url
   }
 
-  const handleOpen = (i = 0) => {
-    setStartIndex(i)
-    setOpen(true)
-  }
-
   return (
     <article
       className="group relative h-full cursor-pointer overflow-hidden rounded-2xl border border-white/10 bg-white/3 p-4 shadow-[0_20px_60px_rgba(0,0,0,0.25)] backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-cyan-400/20 hover:bg-white/5"
-      onClick={() => (images.length ? handleOpen(0) : null)}
+      onClick={onClick}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault()
+          onClick?.()
+        }
+      }}
     >
       <div className="pointer-events-none absolute inset-0 bg-linear-to-br from-cyan-500/10 via-transparent to-blue-500/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
@@ -90,7 +90,6 @@ export default function ProjectCard({
         </div>
       ) : null}
 
-      {open && <ImageModal images={images} start={startIndex} onClose={() => setOpen(false)} />}
     </article>
   )
 }

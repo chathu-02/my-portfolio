@@ -1,9 +1,10 @@
-import { useRef } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import ProjectCard from '../components/ProjectCard.jsx';
 import { projectDetails } from '../data/projectDetail.js';
+import ProjectDetailsModal from '../components/ProjectDetailsModal.jsx';
 
-function ProjectRow({ project, index }) {
+function ProjectRow({ project, index, onOpen }) {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -39,6 +40,7 @@ function ProjectRow({ project, index }) {
             github={project.github}
             live={project.live}
             images={project.images}
+            onClick={() => onOpen(project)}
           />
         </motion.div>
       </div>
@@ -47,6 +49,12 @@ function ProjectRow({ project, index }) {
 }
 
 export default function Projects() {
+  const [activeProject, setActiveProject] = useState(null);
+
+  const closeModal = () => setActiveProject(null);
+
+  const sortedProjects = useMemo(() => projectDetails, []);
+
   return (
     <section id="projects" className="relative py-24 px-6 scroll-mt-24 bg-[#030712] overflow-hidden">
 
@@ -76,12 +84,21 @@ export default function Projects() {
 
         {/* Cards */}
         <div className="flex flex-col items-center">
-          {projectDetails.map((project, index) => (
-            <ProjectRow key={project.id} project={project} index={index} />
+          {sortedProjects.map((project, index) => (
+            <ProjectRow
+              key={project.id}
+              project={project}
+              index={index}
+              onOpen={setActiveProject}
+            />
           ))}
         </div>
 
       </div>
+
+      {activeProject ? (
+        <ProjectDetailsModal project={activeProject} onClose={closeModal} />
+      ) : null}
     </section>
   );
 }
