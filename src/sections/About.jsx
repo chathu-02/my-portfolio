@@ -87,14 +87,14 @@ const About = () => {
 
             <p className="text-gray-400 text-sm leading-relaxed mb-4 group-hover:text-gray-300 transition-colors duration-300">
               I am a dedicated IT undergraduate at the Sri Lanka Institute of Information Technology (SLIIT),
-              specializing in Full Stack Web Development. I build scalable, user-focused applications using
-              the MERN stack, Next.js, and Spring Boot, with a strong emphasis on writing clean, maintainable code.
+              specializing in <span className="text-white font-semibold">Full Stack Web Development</span>. I build scalable, user-focused applications using
+              the <span className="text-white font-semibold">MERN stack</span>, <span className="text-white font-semibold">Next.js</span>, and <span className="text-white font-semibold">Spring Boot</span>, with a strong emphasis on writing clean, maintainable code.
             </p>
 
             <p className="text-gray-400 text-sm leading-relaxed mb-6 group-hover:text-gray-300 transition-colors duration-300">
-              I approach development with a Quality Assurance mindset, ensuring applications are reliable
+              I approach development with a <span className="text-white font-semibold">Quality Assurance</span> mindset, ensuring applications are reliable
               and production-ready through structured testing, API validation, and real-world scenario analysis.
-              I am also actively exploring Generative AI and cloud-based systems.
+              I am also actively exploring <span className="text-white font-semibold">Generative AI</span> and <span className="text-white font-semibold">cloud-based systems</span>.
             </p>
 
             <ul className="flex flex-col gap-3 text-sm">
