@@ -11,11 +11,22 @@ import Contact from './sections/Contact.jsx'
 
 function App() {
   const [isHireOpen, setIsHireOpen] = useState(false);
+  const [isNavOpen, setIsNavOpen] = useState(false);
 
   return (
     <div className="min-h-screen font-sans bg-gray-950 text-gray-100 pt-6">
-      <Navbar onHireClick={() => setIsHireOpen(true)} />
-      <Header onHireClick={() => setIsHireOpen(true)} />
+      <Navbar 
+        isOpen={isNavOpen} 
+        onClose={() => setIsNavOpen(false)} 
+        onHireClick={() => {
+          setIsNavOpen(false);
+          setIsHireOpen(true);
+        }} 
+      />
+      <Header 
+        onMenuClick={() => setIsNavOpen(true)} 
+        onHireClick={() => setIsHireOpen(true)} 
+      />
       <Hero />
       <main>
         <About />
