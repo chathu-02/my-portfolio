@@ -2,6 +2,25 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import heroImage from '../assets/hero.jpg';
 import { stats } from '../data/stats';
+import {
+  SiReact, SiNextdotjs, SiMongodb,
+  SiNodedotjs, SiMysql, SiPhp, SiPostman
+} from 'react-icons/si';
+import { FaJava } from 'react-icons/fa';
+import { TbTestPipe } from 'react-icons/tb';
+
+/* ───── Tech icons for hero section ───── */
+const heroTechIcons = [
+  { name: 'React',    icon: SiReact,     color: '#61DAFB', floatDuration: 3.0 },
+  { name: 'Next.js',  icon: SiNextdotjs, color: '#FFFFFF', floatDuration: 3.5 },
+  { name: 'Node.js',  icon: SiNodedotjs, color: '#339933', floatDuration: 2.8 },
+  { name: 'MongoDB',  icon: SiMongodb,   color: '#47A248', floatDuration: 3.2 },
+  { name: 'Java',     icon: FaJava,      color: '#ED8B00', floatDuration: 3.6 },
+  { name: 'PHP',        icon: SiPhp,       color: '#777BB4', floatDuration: 2.9 },
+  { name: 'MySQL',      icon: SiMysql,     color: '#4479A1', floatDuration: 3.4 },
+  { name: 'Playwright', icon: TbTestPipe,   color: '#2EAD33', floatDuration: 3.1 },
+  { name: 'Postman',    icon: SiPostman,    color: '#FF6C37', floatDuration: 2.7 },
+];
 
 const container = {
   hidden: { opacity: 0 },
@@ -122,15 +141,54 @@ const Hero = () => {
 
         </div>
 
-        {/* RIGHT IMAGE */}
-        <motion.div variants={item} className="hidden md:flex justify-center lg:justify-end transform lg:translate-x-[400px]">
-          <div className="relative overflow-hidden">
-            {/* Profile Image (hidden on small screens to avoid layout overlap) */}
+        {/* RIGHT IMAGE + FLOATING TECH ICONS */}
+        <motion.div variants={item} className="hidden md:flex flex-col items-center lg:items-end transform lg:translate-x-[400px]">
+          <div className="relative">
+            {/* Profile Image */}
             <img
               src={heroImage}
               alt="Chathumi Hewamaramage"
               className="relative w-48 h-48 md:w-[420px] md:h-[420px] object-cover rounded-full"
             />
+          </div>
+
+          {/* Floating Tech Icons below the image */}
+          <div className="flex flex-wrap justify-center gap-3 mt-6 max-w-[420px]">
+            {heroTechIcons.map((tech, i) => (
+              <motion.div
+                key={tech.name}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1 + i * 0.12, duration: 0.5 }}
+              >
+                <motion.div
+                  animate={{ y: [0, -6, 0] }}
+                  transition={{
+                    duration: tech.floatDuration,
+                    repeat: Infinity,
+                    ease: 'easeInOut',
+                    delay: i * 0.3,
+                  }}
+                  className="flex items-center gap-2 px-3.5 py-2 rounded-full border cursor-default group"
+                  style={{
+                    borderColor: `${tech.color}30`,
+                    background: `${tech.color}10`,
+                    backdropFilter: 'blur(8px)',
+                  }}
+                >
+                  <tech.icon
+                    className="text-base group-hover:scale-125 transition-transform duration-300"
+                    style={{ color: tech.color }}
+                  />
+                  <span
+                    className="text-xs font-mono font-semibold"
+                    style={{ color: tech.color }}
+                  >
+                    {tech.name}
+                  </span>
+                </motion.div>
+              </motion.div>
+            ))}
           </div>
         </motion.div>
       </motion.div>
@@ -139,3 +197,4 @@ const Hero = () => {
 };
 
 export default Hero;
+

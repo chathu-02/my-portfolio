@@ -1,8 +1,19 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { HiMenuAlt2 } from 'react-icons/hi'; 
+import { useActiveSection } from '../utils/useActiveSection';
 
-const Header = ({ onMenuClick }) => {
+const navLinks = [
+  { id: 'home', label: 'Home' },
+  { id: 'about', label: 'About' },
+  { id: 'projects', label: 'Projects' },
+  { id: 'skills', label: 'Skills' },
+  { id: 'contact', label: 'Contact' },
+];
+
+const Header = ({ onMenuClick, onHireClick }) => {
+  const activeSection = useActiveSection();
+
   return (
     <header
       className="fixed top-0 left-0 w-full z-50 py-3 px-6"
@@ -32,19 +43,45 @@ const Header = ({ onMenuClick }) => {
           </div>
         </div>
 
-        <nav className="hidden md:flex items-center gap-6 px-2 py-1 rounded-md" style={{ backgroundColor: 'var(--bg)' }}>
-          <a href="#home" className="text-sm font-medium text-gray-200 hover:text-blue-200 transition-colors">Home</a>
-          <a href="#about" className="text-sm font-medium text-gray-200 hover:text-blue-200 transition-colors">About</a>
-          <a href="#projects" className="text-sm font-medium text-gray-200 hover:text-blue-200 transition-colors">Projects</a>
-          <a href="#skills" className="text-sm font-medium text-gray-200 hover:text-blue-200 transition-colors">Skills</a>
-          <a href="#contact" className="text-sm font-medium text-gray-200 hover:text-blue-200 transition-colors">Contact</a>
+        <nav className="hidden md:flex items-center gap-1 px-2 py-1 rounded-md" style={{ backgroundColor: 'var(--bg)' }}>
+          {navLinks.map((link) => {
+            const isActive = activeSection === link.id;
+            return (
+              <a
+                key={link.id}
+                href={`#${link.id}`}
+                className="relative px-3 py-1.5 text-sm font-medium transition-colors duration-200"
+                style={{
+                  color: isActive ? '#93c5fd' : '#d1d5db',
+                }}
+              >
+                {link.label}
 
-          <a
-            href="mailto:chathuhewamaramage@gmail.com?subject=Hire%20Inquiry"
-            className="ml-4 text-sm font-medium text-blue-400 hover:text-blue-300 transition-colors"
+                {/* Animated underline indicator */}
+                {isActive && (
+                  <motion.div
+                    layoutId="nav-indicator"
+                    className="absolute left-1/2 -translate-x-1/2 -bottom-0.5 h-[2px] w-5 rounded-full"
+                    style={{
+                      background: 'linear-gradient(90deg, #3b82f6, #22d3ee)',
+                    }}
+                    transition={{
+                      type: 'spring',
+                      stiffness: 380,
+                      damping: 30,
+                    }}
+                  />
+                )}
+              </a>
+            );
+          })}
+
+          <button
+            onClick={onHireClick}
+            className="ml-4 text-xs font-mono font-semibold text-cyan-300 hover:text-white px-3.5 py-1.5 rounded-full border border-cyan-400/30 hover:border-cyan-400/80 bg-cyan-400/10 hover:bg-cyan-400/20 transition-all duration-200 cursor-pointer shadow-[0_0_15px_rgba(6,182,212,0.15)]"
           >
             Hire Me
-          </a>
+          </button>
         </nav>
 
       </div>

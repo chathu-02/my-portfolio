@@ -1,9 +1,20 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { HiMenuAlt2 } from 'react-icons/hi'
 import { IoClose } from 'react-icons/io5'
+import { useActiveSection } from '../utils/useActiveSection';
 
-export default function Navbar() {
+const navLinks = [
+  { id: 'home', label: 'Home' },
+  { id: 'about', label: 'About' },
+  { id: 'projects', label: 'Projects' },
+  { id: 'skills', label: 'Skills' },
+  { id: 'contact', label: 'Contact' },
+];
+
+export default function Navbar({ onHireClick }) {
   const [open, setOpen] = React.useState(false)
+  const activeSection = useActiveSection();
 
   return (
     <>
@@ -34,15 +45,51 @@ export default function Navbar() {
             </button>
           </div>
 
-          <ul className="flex flex-col gap-4">
-            <li><a href="#home" onClick={() => setOpen(false)} className="text-sm font-medium text-gray-200 hover:text-blue-200">Home</a></li>
-            <li><a href="#about" onClick={() => setOpen(false)} className="text-sm font-medium text-gray-200 hover:text-blue-200">About</a></li>
-            <li><a href="#projects" onClick={() => setOpen(false)} className="text-sm font-medium text-gray-200 hover:text-blue-200">Projects</a></li>
-            <li><a href="#skills" onClick={() => setOpen(false)} className="text-sm font-medium text-gray-200 hover:text-blue-200">Skills</a></li>
-            <li><a href="#contact" onClick={() => setOpen(false)} className="text-sm font-medium text-gray-200 hover:text-blue-200">Contact</a></li>
+          <ul className="flex flex-col gap-1">
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.id;
+              return (
+                <li key={link.id}>
+                  <a
+                    href={`#${link.id}`}
+                    onClick={() => setOpen(false)}
+                    className="relative flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200"
+                    style={{
+                      color: isActive ? '#93c5fd' : '#e5e7eb',
+                      backgroundColor: isActive ? 'rgba(59, 130, 246, 0.08)' : 'transparent',
+                    }}
+                  >
+                    {/* Left accent bar for active item */}
+                    {isActive && (
+                      <motion.div
+                        layoutId="mobile-nav-indicator"
+                        className="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] h-5 rounded-full"
+                        style={{
+                          background: 'linear-gradient(180deg, #3b82f6, #22d3ee)',
+                        }}
+                        transition={{
+                          type: 'spring',
+                          stiffness: 380,
+                          damping: 30,
+                        }}
+                      />
+                    )}
+                    {link.label}
+                  </a>
+                </li>
+              );
+            })}
           </ul>
 
-          <a href="mailto:chathuhewamaramage@gmail.com?subject=Hire%20Inquiry" className="mt-6 inline-block bg-blue-600 text-white px-4 py-2 rounded">Let's Talk</a>
+          <button 
+            onClick={() => {
+              setOpen(false);
+              if (onHireClick) onHireClick();
+            }}
+            className="mt-6 w-full text-center bg-blue-600 hover:bg-blue-500 text-white font-semibold px-4 py-2.5 rounded-xl cursor-pointer shadow-lg shadow-blue-500/25 transition-all"
+          >
+            Hire Me / Let's Talk
+          </button>
         </aside>
       </div>
     </>
