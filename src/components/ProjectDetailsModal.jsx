@@ -154,7 +154,60 @@ export default function ProjectDetailsModal({ project, onClose }) {
               {project.description}
             </p>
 
-            {isAuraGem ? (
+            {project.role || project.features ? (
+              <div className="rounded-2xl border border-cyan-400/15 bg-cyan-400/5 p-4 sm:p-5">
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                  <div>
+                    <p className="text-[0.68rem] uppercase tracking-[0.2em] text-cyan-200/80 sm:text-xs">
+                      Key Features
+                    </p>
+                    <h3 className="mt-1 text-lg font-semibold text-white sm:text-xl">
+                      {project.title}
+                    </h3>
+                  </div>
+                  {project.tag ? (
+                    <div className="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-cyan-100">
+                      {project.tag}
+                    </div>
+                  ) : null}
+                </div>
+
+                <div className="mt-4 grid gap-3 sm:grid-cols-3">
+                  {project.role ? (
+                    <div className="rounded-xl border border-white/10 bg-black/10 p-3">
+                      <p className="text-[0.65rem] uppercase tracking-[0.2em] text-slate-400">Role</p>
+                      <p className="mt-1 text-sm font-semibold text-white">{project.role}</p>
+                    </div>
+                  ) : null}
+                  {project.focus ? (
+                    <div className="rounded-xl border border-white/10 bg-black/10 p-3">
+                      <p className="text-[0.65rem] uppercase tracking-[0.2em] text-slate-400">Focus</p>
+                      <p className="mt-1 text-sm font-semibold text-white">{project.focus}</p>
+                    </div>
+                  ) : null}
+                  {project.environment ? (
+                    <div className="rounded-xl border border-white/10 bg-black/10 p-3">
+                      <p className="text-[0.65rem] uppercase tracking-[0.2em] text-slate-400">Environment</p>
+                      <p className="mt-1 text-sm font-semibold text-white">{project.environment}</p>
+                    </div>
+                  ) : null}
+                </div>
+
+                {project.features && project.features.length > 0 ? (
+                  <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                    {project.features.map((item) => (
+                      <div
+                        key={item}
+                        className="flex items-start gap-3 rounded-2xl border border-white/5 bg-black/10 px-4 py-3"
+                      >
+                        <span className="mt-1.5 h-2 w-2 flex-none rounded-full bg-cyan-300" />
+                        <span className="text-sm leading-6 text-slate-300 sm:text-[0.98rem]">{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                ) : null}
+              </div>
+            ) : isAuraGem ? (
               <div className="rounded-2xl border border-cyan-400/15 bg-cyan-400/5 p-4 sm:p-5">
                 <div className="flex flex-wrap items-center justify-between gap-3">
                   <div>
@@ -217,7 +270,28 @@ export default function ProjectDetailsModal({ project, onClose }) {
               </div>
             ) : null}
 
-            {isAuraGem ? (
+            {project.workflow && project.workflow.length > 0 ? (
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-4 sm:p-5 lg:p-6">
+                <p className="text-[0.68rem] uppercase tracking-[0.2em] text-slate-400 sm:text-xs">
+                  Working Flow
+                </p>
+                <ol className="mt-4 grid gap-3">
+                  {project.workflow.map((step, stepIndex) => (
+                    <li
+                      key={step}
+                      className="flex w-full items-start gap-3 rounded-2xl border border-white/5 bg-black/10 px-4 py-4"
+                    >
+                      <span className="flex h-8 w-8 flex-none items-center justify-center rounded-full bg-cyan-400/15 text-sm font-semibold text-cyan-200">
+                        {stepIndex + 1}
+                      </span>
+                      <span className="text-sm leading-6 text-slate-300 sm:text-[0.98rem]">
+                        {step}
+                      </span>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            ) : isAuraGem ? (
               <div className="rounded-2xl border border-white/10 bg-white/5 p-4 sm:p-5 lg:p-6">
                 <p className="text-[0.68rem] uppercase tracking-[0.2em] text-slate-400 sm:text-xs">
                   Working Flow

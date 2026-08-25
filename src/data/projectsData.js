@@ -67,8 +67,32 @@ export const projectsData = [
     images: ["/s1.jpg", "/s2.jpg", "/s3.jpg"],
     category: "AI / Full Stack"
   },
-  
-  
+  {
+    id: 5,
+    title: "Deskbrew Hub & Cafe (Working-Hub)",
+    description: "Deskbrew Hub & Cafe is a dual-purpose web application designed to streamline operations for modern hybrid spaces. The platform seamlessly integrates a coworking space reservation system with a fully functional cafe ordering system. It solves the challenge of managing two distinct business operations by allowing users to book workspaces and order refreshments through a single, unified interface.",
+    tech: ["HTML5", "CSS3", "PHP", "MySQL", "XAMPP Server"],
+    github: "https://github.com/chathu-02/Cafe.git",
+    images: [
+      "/cafe/screencapture-localhost-working-hub-index-php-2026-08-25-15_10_01.png",
+      "/cafe/screencapture-localhost-working-hub-cafe-php-2026-08-25-15_10_59.png",
+      "/cafe/screencapture-localhost-working-hub-dashboard-php-2026-08-25-15_10_46.png",
+      "/cafe/screencapture-localhost-working-hub-cart-php-2026-08-25-15_11_15.png",
+      "/cafe/screencapture-localhost-working-hub-login-php-2026-08-25-15_10_30.png",
+      "/cafe/CCC.JPG"
+    ],
+    category: "Full Stack",
+    role: "Full-Stack Developer",
+    focus: "Reservation & Ordering",
+    environment: "XAMPP Server",
+    tag: "Personal Project",
+    features: [
+      "Workspace Booking: An intuitive reservation system allowing users to browse and book desks, private rooms, and meeting spaces for specific time slots.",
+      "Cafe Ordering & Checkout: A built-in menu and cart system featuring a streamlined checkout process for food and beverages.",
+      "User Accounts: Personalized dashboards where customers can manage their profiles, view past orders, and track active bookings.",
+      "Admin Management: A centralized backend system to manage space availability, update cafe menus, and monitor daily reservations."
+    ]
+  },
   {
     id: 6,
     title: "Personal Task Manager",
